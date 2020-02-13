@@ -167,3 +167,13 @@ Write a script that's similar to the one you wrote above to add even numbers. Ho
 this time your script should accept any number of integers as command-line arguments 
 and only sum the even ones. At the end, your script should print out sum.
 ```
+
+## Regular Expressions
+
+What are Regular Expressions?
+  - Editing text files is one of the most common tasks in computational biology
+  - Often these files contain datasets whose format needs to be changed or from which some information needs to be extracted
+  - Accomplishing these tasks by hand is tedious at best, and impossible in many cases
+  - Regular expressions are an advanced form of find-and-replace that can be used to manipulate complex patterns of text
+  - Regular expressions are often abbreviated as `regex`
+
