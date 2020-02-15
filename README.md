@@ -18,7 +18,7 @@ There are lots of different ways to compare values, depending on what type of va
 ```
 # Defining value of numeric variable
 a=2
-        
+
 # if...else to see if value of number is at least 3
 if [ $a -lt 3 ]  # Note: this could also be ((a < 3))
 then
@@ -57,7 +57,7 @@ Practice Exercise - If...Else
 ```
 Practice Exercise - Nested If...Else
 
-If...else statements can be nested inside one another. If these statements were in a script, and 
+If...else statements can be nested inside one another. If these statements were in a script, and
 you passed 8 as the command-line argument, what will happen? What if you pass a 4?
 
 if [ $1 -le 7 ]
@@ -163,10 +163,64 @@ done
 ```
 Practice Exercise
 
-Write a script that's similar to the one you wrote above to add even numbers. However, 
-this time your script should accept any number of integers as command-line arguments 
+Write a script that's similar to the one you wrote above to add even numbers. However,
+this time your script should accept any number of integers as command-line arguments
 and only sum the even ones. At the end, your script should print out sum.
 ```
 
 
+```
+Assignment 4
 
+In this assignment, you will need to write scripts to process a set of files
+containing alignments of DNA sequences. Each file contains DNA sequences from
+a different region of the genome for a set of amniote species (e.g., mammals,
+birds, and reptiles). However, as is common in many studies, we do not have the
+same number of sequences in each file. First, you will need to write a script that
+sorts the files and organizes them into different folders depending on how
+many sequences they contain. Second, you will need to write a script that sorts
+the files and organizes them into different folders depending on whether
+they contain sequences from "caretta" or not.
+
+(1) To download the alignments, use the following command:
+
+curl -L https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz >> alignments.tgz
+
+This will create a file called "alignments.tgz" in your working directory. Files
+that end with ".tgz" are a compressed file type (like zip files).
+
+(2) To uncompress the folder with the alignment files, use this command:
+
+tar -xzf alignments.tgz
+
+After executing this command, you should have a folder called "alignments" that
+contains 248 files, each of which contains a set of sequences from different
+species. View the contents of some of these alignment files. They format they use
+is called Nexus, and each one has some text that says "ntax = " followed by the
+number of sequences in that file. After the header lines, the files have a
+separate DNA sequence on each line. Each line begins with a name indicating the
+species that was sequenced, followed by the DNA sequence itself.
+
+If you have any questions about the contents or format of these files, feel free
+to email me and ask for clarification.
+
+(3) Write a bash script that will sort these alignment files into a series of
+folders. Each folder should contain only alignments with the same number of
+species (e.g., 9, 10, 11, etc.). To accomplish this, please use a for loop and
+at least one if..else or if...elif...else statement. There are multiple ways that
+you can do this sorting, so BE SURE YOUR SCRIPT CONTAINS COMMENTS THAT MAKE IT
+CLEAR HOW YOU ARE DOING THE SORTING.
+
+(4) Write a second bash script that will sort the alignment files into those that
+contain sequences from caretta and those that do not. Again, be sure to include
+comments.
+
+(5) To submit your assignment, please fork the Week 5 repository, create a folder
+with your name, add your scripts to this folder, then submit a pull request to
+the class page.
+
+This assignment will be due before class ON THURSDAY, FEB. 20TH. We won't have
+time to work on the assignment during class on Tuesday, but I will be available
+for a few minutes after class to answer questions. As always, you are strongly
+encouraged to work together, but each person's code is expected to be their own.
+```
