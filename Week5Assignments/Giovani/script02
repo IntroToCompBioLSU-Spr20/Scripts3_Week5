@@ -1,0 +1,25 @@
+#! /bin/bash
+
+#Make new directories that will store organized files. 
+#yCaretta will contain files with caretta samples, nCaretta will contain files without caretta samples.
+mkdir ./sortCaretta
+mkdir ./sortCaretta/yCaretta
+mkdir ./sortCaretta/nCaretta
+
+#In the following section, this script will analyze each nexus file and will create a copy of each of them in a particular folder, 
+#according if it has or not caretta sequences.
+#In each nexus file...
+for file in ./alignments/*.nex
+do
+#... how many caretta sequences does your file contains? (grep -c counts how many times "caretta" appears).
+#Create a variable with this value (ca)
+ca=`grep -c caretta $file`
+	#If that file doesn't include any caretta sequences, copy it in the sortCaretta/nCaretta folder
+	if ((ca == 0))
+	then
+	cp $file ./sortCaretta/nCaretta
+	#but, if it include one or more caretta sequences, copy it in the sortCaretta/yCaretta folder
+	else
+	cp $file ./sortCaretta/yCaretta
+	fi
+done
