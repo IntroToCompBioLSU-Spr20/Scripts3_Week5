@@ -1,0 +1,17 @@
+
+#! /bin/bash
+#making directories Caretta and noCaretta using mkdir
+#creating a variable including all nexus files inside the folder alignments and putting them into a loop
+for num in ./alignments/*.nex
+ do
+#creating a second variable for storing/grepping/counting all the files including caretta
+   var=`grep -c caretta $num`
+#using an if..else to get only those nexus different than cero (those including Caretta) and moving them into the folder Caretta
+      if  (( var != 0 ))
+        then
+         mv $num ./Caretta
+#moving the nexus w/o caretta to a different folder (noCaretta)
+      else
+         mv $num ./noCaretta
+      fi
+done
