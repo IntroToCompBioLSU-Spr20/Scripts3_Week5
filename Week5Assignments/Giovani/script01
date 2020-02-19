@@ -1,0 +1,37 @@
+#! /bin/bash
+
+#Make a directory that will store files organized
+mkdir ./sortNtaxa
+
+#Create two variables: the smallest (sValue) and the gratest (gValue) values of number of taxa that our files have ("ntax = x", in each nexus file).
+#1-grep "ntax = *" and show results without file names (grep -h).
+#2-The fourth column show how many taxa your file contains, so only print that column.
+#3-Sort all the results from smallest to greatest value (sort -n).
+#4-Show the smallest (head -n1) and the greatest (tail -n1) values.
+sValue=`grep -h "ntax = *" ./alignments/*.nex | awk '{print $4}'| sort -n | head -n1`
+gValue=`grep -h "ntax = *" ./alignments/*.nex | awk '{print $4}'| sort -n | tail -n1`
+
+#From $sValue to $gValue, create different subfolders (one for each number)
+for ((folder=$sValue;folder<=$gValue;folder++))
+do
+	mkdir ./sortNtaxa/$folder
+done
+
+#In the following section, this script will analyze each nexus files and will create a copy of each one in a particular folder, 
+#according to how many taxa each file include.
+#In each nexus file, do...
+for file in ./alignments/*.nex
+do
+#... create a variable (nt) with the number of taxa that that file contains, and...
+nt=`grep -h "ntax = *" $file | awk '{print $4}'`
+	#... within the range from the smallest to the greatest number of taxa in our dataset...
+	for ((folder=$sValue;folder<=$gValue;folder++))
+	do
+		#...compare if the "nt" variable is equal to the name of each folder
+		if (( $nt == $folder ))
+		#if that is true, then copy the nexus file into that folder
+		then
+		cp $file ./sortNtaxa/$folder
+		fi
+	done
+done
