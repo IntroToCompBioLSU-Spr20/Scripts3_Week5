@@ -1,0 +1,14 @@
+#! /bin/bash
+curl -L https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz >> alignments.tgz #download the folder
+tar -xzf alignments.tgz #unzip the folder
+cd ./alignments #move into the folder with the alignments files
+for file in *.nex; do #create a for loop in which you get all the alignment files that end in .nex extension
+        ntax=$(grep -oP '(?<=(ntax = )).*(?= nchar)' $file) #define number of taxa per file by searching for any value that is found after the words "ntax = " and before "nchar = " in each of the files
+        if [[ ! -d "$ntax" ]]; then #if there is no directory created with the ntax value defined before
+                mkdir "$ntax" #make the directory
+                mv -t "$ntax" "$file" #move your file into that directory
+        else
+                mv -t "$ntax" "$file" #otherwise, if there already a directory, move the file into that directory
+        fi
+done
+echo "All files have been moved to folders with same number of sequences!"
