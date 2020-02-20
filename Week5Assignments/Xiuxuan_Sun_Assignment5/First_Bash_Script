@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# Author: Xiuxuan Sun
+# BIOL 4800 Week 5 Assignments first bash script
+
+# Please go to the alignments folder, and create the .sh file in this folder.
+# Copy all the code into the .sh file, and then it run successfully.
+
+# Assign all the filename in the alignments to variable File_Name 
+File_Name=`ls *.nex`
+for file in $File_Name
+do
+  # pipe the number of species and stored it in the variable ntax_num
+  ntax_num=`grep ntax $file | awk '{print $4}'`
+
+    # test whether the folder with specific number of species exists or not
+    if [ ! -d "/home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num" ]
+    then
+        mkdir /home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num
+    else
+        cp /home/xsun/myBiologyClasses/hw/hw5/alignments/$file /home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num/$file
+    fi
+done
