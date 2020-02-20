@@ -1,0 +1,43 @@
+
+#! /bin/bash
+
+#create new directories to move files to
+mkdir ./alignments/ntax9
+mkdir ./alignments/ntax10
+mkdir ./alignments/ntax11
+mkdir ./alignments/ntax12
+mkdir ./alignments/ntax13
+mkdir ./alignments/ntax14
+mkdir ./alignments/ntax15
+mkdir ./alignments/ntax16
+
+#call each file in a loop
+for num in `ls alignments/my_ENSGALG000000*`
+do
+echo $num
+
+#create a variable with info (grep) of number of taxa
+        MyVar=`grep -h "ntax" $num | awk '{print $4}'`
+
+#if the variable (number of taxa within the file) is equal 9, file will be moved to assigned directory
+        if (($MyVar == 9))
+        then mv $num ./alignments/ntax9/
+#same for other values of number of taxa
+        elif (($MyVar == 10))
+        then mv $num ./alignments/ntax10/
+        elif (($MyVar == 11))
+        then mv $num ./alignments/ntax11/
+        elif (($MyVar == 12))
+        then mv $num ./alignments/ntax12/
+        elif (($MyVar == 13))
+        then mv $num ./alignments/ntax13/
+        elif (($MyVar == 14))
+        then mv $num ./alignments/ntax14/
+        elif (($MyVar == 15))
+        then mv $num ./alignments/ntax15/
+        elif (($MyVar == 16))
+        then mv $num ./alignments/ntax16/
+#an error message in case of something is left out
+        else echo "BOOOOO"
+        fi
+done

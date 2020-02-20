@@ -1,0 +1,27 @@
+#! /bin/bash
+
+#create 2 new directories
+mkdir ./alignments/caretta
+mkdir ./alignments/nocaretta
+
+#call each file in a loop
+for num in `ls alignments/my_ENSGALG000000*`
+do
+echo $num
+
+#create a varible with the result of finding "caretta" from each file being ca$
+MyVar=`grep caretta $num`
+echo $MyVar > sizeofmyvar.txt
+cat sizeofmyvar.txt
+
+#create a second variable with the word count of first variable
+MyVar2=`wc -m sizeofmyvar.txt | awk '{print $1}'`
+echo $MyVar2
+
+#now if the result (second variable) has only 1 character, it will be moved to the directory /nocaretta
+        if (($MyVar2 == 1))
+        then mv $num ./alignments/nocaretta/
+#move files that do not contain caretta to directory /caretta
+        else mv $num ./alignments/caretta
+        fi
+done
