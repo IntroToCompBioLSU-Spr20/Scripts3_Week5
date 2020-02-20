@@ -1,0 +1,11 @@
+#! /bin/bash
+#We will use a for loop to create individual directories for provi$
+for ((n=9 ; n<=17 ; n++))
+do
+   echo "In for loop."
+If (( $3 < 5 ))
+then
+    echo "less than five"
+elif (( $3 < 7 ))
+then
+    echo "between four and six"
