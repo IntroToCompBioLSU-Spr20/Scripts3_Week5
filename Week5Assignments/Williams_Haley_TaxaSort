@@ -1,0 +1,40 @@
+#! /bin/bash
+#This script sorts files from the decompressed alignments folder into new folders dependant upon the number of taxa present in each file.
+#####For loop to create directories/ folders for each number of taxa 9-16
+for ((n=9 ; n<=16 ; n++))
+do
+#####Names directory as such: 9taxa 10taxa etc
+mkdir $n"taxa"
+done
+#####For loop to sort files from decompressed alignments folder into the new taxa folders based upon the number of taxas present in each file.
+for f in *.nex
+#####Looks for the string "ntax = 9" within the current file and silecnes the output.
+do if grep -q "ntax = 9" $f
+   then
+#####If the above string is present, the file is copied to the folder 9taxa/.
+    cp $f 9taxa/
+#####If the string is not present, the script continues to the next arguement/ number of taxa to check for the next string.
+        elif grep -q "ntax = 10" $f
+        then
+        cp $f 10taxa/
+                elif grep -q  "ntax = 11" $f
+                then
+                cp $f 11taxa/
+                        elif grep -q "ntax = 12" $f
+                        then
+                        cp $f 12taxa/
+                                elif grep -q "ntax = 13" $f
+                                then
+                                cp $f 13taxa/
+                                        elif grep -q "ntax = 14" $f
+                                        then
+                                        cp $f 14taxa/
+                                                elif grep -q "ntax = 15" $f
+                                                then
+                                                cp $f 15taxa/
+                                                        elif grep -q "ntax = 16" $f
+                                                        then
+                                                         cp $f 16taxa/
+#####Nested If Then terminated and For Loop closed.
+fi
+done
