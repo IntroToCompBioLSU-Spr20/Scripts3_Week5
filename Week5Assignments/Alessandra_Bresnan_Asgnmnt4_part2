@@ -1,0 +1,15 @@
+#! /bin/bash
+curl -L https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz >> alignments.tgz #download the folder
+tar -xzf alignments.tgz #unzip the folder
+cd ./alignments #move into the folder with the alignments files
+mkdir caretta #create a caretta directory outside the for loop
+mkdir nocaretta #create a nocaretta directory outside the for loop
+for file in *.nex; do #create a for loop in which you get all the alignment files that end in .nex extension
+        if grep -q "caretta" $file #create if statement looking for all the files with "caretta" and pressing all other normal output
+        then
+        mv "$file" ./caretta/ #when found file with caretta, move it into the caretta directory      
+        else
+        mv "$file" ./nocaretta #if it doesn't have "caretta" then move file into nocaretta directory
+        fi
+done
+echo "All files have been moved to directories according to whether they include caretta species or not."
