@@ -1,0 +1,56 @@
+     Show Dotfiles Show Owner/Mode
+File Explorer
+/home/hh11123/myBiologyClasses/Ass4/alignments/
+#! /bin/bash
+#Assignment4
+
+# create new folders
+mkdir 9 10 11 12 13 14 15 16
+
+# get files in this directory
+
+n=`ls *.nex`
+
+# grep ntax and find the column of the number
+
+for file in $n
+do 
+  Num=`grep "ntax = " $file | awk '{print $4}'`
+    if [ $Num -eq 9 ] 
+    then
+      cp $file 9/
+# use cp rather than mv to keep the original file
+    elif [ $Num -eq 10 ]
+    then
+      cp $file 10/
+    elif [ $Num -eq 11 ]
+    then
+      cp $file 11/
+    elif [ $Num -eq 12 ]
+    then
+      cp $file 12/
+    elif [ $Num -eq 13 ]
+    then
+      cp $file 13/
+    elif [ $Num -eq 14 ]
+    then
+      cp $file 14/
+    elif [ $Num -eq 15 ]
+    then
+      cp $file 15/
+    elif [ $Num -eq 16 ]
+    then
+      cp $file 16/
+    fi
+done
+
+mkdir caretta nocare
+for file in $n
+do 
+  if grep -q"caretta" $file
+    then
+      cp $file caretta/
+    else
+      cp $file nocare/
+    fi
+done
