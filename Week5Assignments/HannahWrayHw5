@@ -1,0 +1,37 @@
+Submit your homework assignments in this folder.
+
+speciesNumberHw4.sh
+#! /bin/bash
+# loop through the data files in alignments folder
+for data in ~/alignments/*; do
+# pull out the "ntax = digits" across all files in alignments folder, then pull out just the digits
+speciesNum=`grep -o -P "ntax = \d+" $data | grep -o -P "\d+"`
+# if the directory with ntax number doesn't exist, make the directory, put the file in that directory
+# if directory exists, move the file to that directory
+        if [ ! -d "$speciesNum" ]
+        then
+                mkdir "$speciesNum"; mv $data ./$speciesNum
+        else
+                mv $data ./$speciesNum
+        fi
+done
+echo "Sorting complete."
+
+
+caretta.sh
+#! /bin/bash
+# make directory for caretta files and a directory for non-caretta files
+mkdir caretta
+mkdir nonCaretta
+# loop through the files in alignments folder
+for data in ~/alignments/*; do
+# select only lines with "caretta" regardless of case out of files, if file has term- move file to caretta directory
+# if file does not have "caretta"- there is no output, move file to non-caretta directory
+        if grep -q -w -i "caretta" $data
+        then
+                mv $data ./caretta
+        else
+                mv $data ./nonCaretta
+        fi
+done
+echo "Sorting complete."
