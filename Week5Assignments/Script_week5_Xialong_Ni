@@ -45,6 +45,8 @@ do
 done
 
 mkdir caretta nocare
+# grep "caretta" from .nex files, if grep successfully, move the file to caretta folder, if not, move to nocare folder
+
 for file in $n
 do 
   if grep -q"caretta" $file
