@@ -1,0 +1,22 @@
+#! /bin/bash
+
+for file in $(ls *.nex); do    ## creates a loop to enter into each file ending in .nex
+
+       ntax=`grep -o "[[:digit:]]* " $file`    ## this assigns the number of taxa (ntax) into the variable ntax; the "digit" command with -o allows grep to grab the first digit
+         if [ $ntax -eq  9 ]                   ## this starts the if statments. Stating if the variable ntaxa is equal to the number then copy the file to the folder
+                then cp $file 9taxa
+        elif [ $ntax -eq 10 ] 
+                then cp $file 10taxa
+        elif [ $ntax -eq 11 ]
+                then cp $file 11taxa
+        elif [ $ntax -eq 12 ]
+                then cp $file 12taxa
+        elif [ $ntax -eq 13 ]
+                then cp $file 13taxa
+        elif [ $ntax -eq 14 ]
+                then cp $file 14taxa
+        elif [ $ntax -eq 15 ]
+                then cp $file 15taxa
+     fi                                   ## ends the if statement
+done                                      ## closes the for loop
+
