@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# Author: Xiuxuan Sun
+# BIOL 4800 Week 5 Assignments Second bash script
+
+# Please go to the alignments folder, and create the .sh file in this folder.
+# Copy all the code into the .sh file, and then it run successfully.
+
+# Assign all the file names in the alignments to variable File_Name 
+File_Name=`ls *.nex`
+for file in $File_Name
+do
+  # pipe the sequence name and stored it in the variable ntax_num
+  sequence=`grep caretta $file | awk '{print $1}'`
+
+    # test whether the files inclues sequence from Caretta or not
+    if [ "$sequence" == "caretta" ]
+    then
+	# test whether the caretta directory exists or not
+        if [ ! -d "/home/xsun/myBiologyClasses/hw/hw5/$sequence" ]
+        then
+            mkdir /home/xsun/myBiologyClasses/hw/hw5/$sequence
+        else
+            cp /home/xsun/myBiologyClasses/hw/hw5/alignments/$file /home/xsun/myBiologyClasses/hw/hw5/$sequence/$file
+        fi
+    else
+        # test whether the nocaretta directory exists or not
+        if [ ! -d "/home/xsun/myBiologyClasses/hw/hw5/noCaretta" ]
+        then
+	    mkdir /home/xsun/myBiologyClasses/hw/hw5/noCaretta
+        else
+            cp /home/xsun/myBiologyClasses/hw/hw5/alignments/$file /home/xsun/myBiologyClasses/hw/hw5/noCaretta/$file
+        fi
+     fi
+done
