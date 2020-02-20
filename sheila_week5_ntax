@@ -1,0 +1,58 @@
+#! /bin/bash
+
+tar -xzf alignments.tgz
+
+#in order to know the lowest and the highest number of taxa within my nexus:
+#grep all nexus files containing the word ntax (which contains the info I need)
+#then, select only the colunm containing the number of taxa in each nexus
+#then sort this column (number 5) from the lowest to the highest
+#finally, print the first value from the list (which should be the lowest)
+#in a command line below, I repeat this procedure but changing head by tail and getting the last number from the list that actually represents the highest
+# this way, I get both the lowest number of sequences contained in a file and the highest one, so I can run my for loop based on these two numbers and then separate...
+# ... the nexus files based on the number of taxa inside
+# use pipe to keep all the instructions in the same command line and get the two values I need
+
+grep ntax ./alignments/*.nex | awk '{print $5}' | sort -n | head -1
+grep ntax ./alignments/*.nex | awk '{print $5}' | sort -n | tail -1
+
+# making a directory for each number of taxa from 9 to 16
+
+for (( num=9 ; num<=16 ; num++ ))
+   do
+    mkdir ./alignments/$num
+ done
+
+# creating a loop for taking each nexus files with the same ntax and moving the files into a folder with the same name
+for taxa in ./alignments/*.nex
+  do
+
+# grepping the ntax with each number and moving the file into the folder with the same name
+# -oq will allow me getting only the part the matches (-o) what I need (ex.: ntax=9) and at the same time not displaying it
+
+if grep -oq "ntax = 9" $taxa
+     then
+    mv $taxa ./alignments/9
+elif grep -oq "ntax = 10" $taxa
+     then
+    mv $taxa ./alignments/10
+elif grep -oq "ntax = 11" $taxa
+     then
+    mv $taxa ./alignments/11
+elif grep -oq "ntax = 12" $taxa
+     then
+    mv $taxa ./alignments/12
+elif grep -oq "ntax = 13" $taxa
+     then
+    mv $taxa ./alignments/13
+elif grep -oq "ntax = 14" $taxa
+     then
+    mv $taxa ./alignments/14
+elif grep -oq "ntax = 15" $taxa
+     then
+    mv $taxa ./alignments/15
+elif grep -oq "ntax = 16" $taxa
+     then
+    mv $taxa ./alignments/16
+fi
+done
+echo "your files have been moved"
