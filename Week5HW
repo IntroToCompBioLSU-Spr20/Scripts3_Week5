@@ -1,6 +1,5 @@
 #! /bin/bash
 num=$1
-a=$ntax
 # goal is to group files based on number of DNA sequences contained
 # download alignments
 curl -L https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz $
