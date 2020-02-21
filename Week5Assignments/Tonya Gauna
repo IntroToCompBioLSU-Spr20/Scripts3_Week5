@@ -1,0 +1,53 @@
+#! /bin/bash
+#using the for loop to create individual directories for given taxa 9-16
+#sorting alignment files
+#$n=taxa number
+#$file=file with taxa
+#Put files that have specific taxa into appropriate directory
+for ((n=9 ; n<=16 ; n++))
+do
+         mkdir $n"taxa"
+done
+for file in alignments/*.nex
+do
+        if [ `grep "ntax = 9" $file | wc -l` -eq 1 ]
+     then
+        cp $file 9taxa
+fi
+        if [ `grep "ntax = 10" $file | wc -l` -eq 1 ]
+      then
+        cp $file 10taxa
+fi
+       if [ `grep "ntax = 11" $file | wc -l` -eq 1 ]
+    then
+        cp $file 11taxa
+fi
+       if [ 1grep "ntax = 12" $file | wc -l` -eq 1 ]
+    then
+        cp $file 12taxa
+fi
+      if [ `grep "ntax = 13" $file | wc -l` -eq 1 ]
+       then
+        cp $file 13taxa
+fi
+     if [ `grep "ntax = 14" $file | wc -l` -eq 1 ]
+     then
+        cp $file 14taxa
+fi
+     if [ `grep "ntax = 15" $file | wc -l` -eq 1 ]
+   then
+        cp $file 15taxa
+fi
+    if [ `grep "ntax = 16" $file | wc -l` -eq 1 ]
+   then
+        cp $file 16taxa
+fi
+done
+#Sorting caretta files
+     if [ `grep "caretta" $file | wc -l` -eq 1 ]
+   then
+        cp $file caretta
+else
+        cp $file caretta_missing
+fi
+done
