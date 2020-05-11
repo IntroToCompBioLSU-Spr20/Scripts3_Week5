@@ -1,0 +1,47 @@
+#! /bin/bash
+num=$1
+# goal is to group files based on number of DNA sequences contained
+# download alignments
+curl -L https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz $
+# uncompress the alignment folder
+tar -xzf alignments.tgz
+#new directories
+mkdir alignments/caretta alignments/noCaretta
+# extracts line number 4 & filename for the purpose of deciding ntax range
+awk 'FNR==4 {print FILENAME, $0}' *.nex >>./pure.txt
+#for loop for sorting
+for ((num=9;num<=16;num++))
+do
+        echo "This file has $num species."
+done
+# sorting files 9-11
+if [ $1 -le 9 ]
+then
+        echo "Put this in nine.txt."
+elif [ $1 -le 14 ]
+then
+        echo "Put this in fourteen.txt."
+elif  [ $1 -gt 16 ]
+then
+        echo "out of your ntax range"
+else
+        echo "between 12-15."
+fi
+# individual sorting
+
+
+
+
+#! /bin/bash
+shoo='grep -i "Caretta" alignments/*.nex'
+#new directories
+#since im looking for 2 outputs do search based on on ntax value
+for ((num=9;num<=12;$num++))
+do
+         echo "$shoo" alignments/*.nex >/alignments/caretta/
+done
+# split the possible input values 50/50 num-- prevents it from exceeding defined string of numbers
+for ((num=13;num<=16;num--))
+do
+        echo "no Caretta" | grep "noCaretta" alignments/*.nex >/alignments/noCaretta/
+done
