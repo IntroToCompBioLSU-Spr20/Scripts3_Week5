@@ -1,0 +1,22 @@
+#! /bin/bash
+
+#download, uncompress files & assigns it to alignments directory
+wget https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz
+tar -xzf alignments.tgz
+
+#create directories for files containing the taxa caretta not containing caretta
+mkdir alignments/caretta alignments/noCaretta
+
+#for loop that utilizes all files in the directory alignments that end in ".nex"
+for file in alignments/*.nex
+do
+        #tests to see whether the files contain "caretta" in it
+        if grep -q "caretta" $file
+        then
+                #if so, it's moved to the "caretta" directory
+                mv $file alignments/caretta/
+        else
+                #if does not contain caretta string, it is moved to the "noCaretta" directory
+                mv $file alignments/noCaretta/
+        fi
+done

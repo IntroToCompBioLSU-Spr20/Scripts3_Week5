@@ -1,0 +1,28 @@
+
+#! /bin/bash
+
+#download contents & decompress. the files will appear in the alignments directory
+wget https://github.com/IntroToCompBioLSU-Spr20/Scripts3_Week5/raw/master/alignments.tgz
+tar -xzf alignments.tgz
+
+#make a directory in the alignments directory
+mkdir alignments/sortTaxa
+
+#loops for files in alignments that end with ".nex"
+for file in alignments/*.nex
+do
+        #pipe the number of taxa on the fourth word & store it as "numberedTaxa"
+        numberedTaxa=`grep ntax $file | awk '{print $4}'`
+        #checks whether a directory with that given value as a name exists
+        if [ ! -d "/home/areens/alignments/sortTaxa/$numberedTaxa" ]
+        
+        #if so, moves the file to that respective directory
+        then
+                mv $file /home/areens/alignments/sortTaxa/$numberedTaxa
+        
+        #if not, makes a directory with new value name & moves the file there
+        else
+                mkdir /home/areens/alignments/sortTaxa/$numberedTaxa
+                mv $file /home/areens/alignments/sortTaxa/$numberedTaxa
+        fi
+done
