@@ -1,0 +1,18 @@
+#! /bin/bash
+#This script sorts the data from the decompressed alignments folder into one of two folders depending on whether the file contains a Caretta taxa.
+#####Makes two directories, one for files with caretta and one for files without.
+mkdir Caretta NoCaretta
+#####For loop to cycle through all files from the decompressed alignments folder.
+for n in *.nex
+do
+#####Checks to see if the string "caretta" is present in the current file.
+         if grep -q "caretta" $n
+        then
+#####If the string is present, the file is copied to the new Caretta/.
+        cp $n Caretta/
+        else
+#####If the string is not present, the file is copied to NoCaretta/.
+        cp $n NoCaretta/
+#####Terminates If Then and closes loop.
+fi
+done
