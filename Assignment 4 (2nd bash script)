@@ -1,0 +1,3 @@
+#! /bin/bash
+#we will sor the alignment files into those that contain sequences from caretta a$
+if ['grep caretta <file> | wc-|']
