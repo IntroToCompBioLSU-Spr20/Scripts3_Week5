@@ -1,0 +1,54 @@
+#! /bin/bash
+
+#For loop to create directories/ folders for each taxa 9-16
+for ((n=9 ; n<=16 ; n++))
+do
+mkdir $n"taxa"
+done
+
+#For loop to check each file and place it in the matching folder
+for f in *.nex
+do 
+if grep -q "ntax = 9" $f   #if statement to check 
+   then
+    cp $f 9taxa/        #copy file into that folder if the string matches in the folder and file 
+        elif grep -q "ntax = 10" $f
+        then
+        cp $f 10taxa/
+                elif grep -q  "ntax = 11" $f
+                then
+                cp $f 11taxa/
+                        elif grep -q "ntax = 12" $f
+                        then
+                        cp $f 12taxa/
+                                elif grep -q "ntax = 13" $f
+                                then
+                                cp $f 13taxa/
+                                        elif grep -q "ntax = 14" $f
+                                        then
+                                        cp $f 14taxa/
+                                                elif grep -q "ntax = 15" $f
+                                                then
+                                                cp $f 15taxa/
+                                                        elif grep -q "ntax = 16" $f
+                                                        then
+                                                        cp $f 16taxa/
+fi
+done
+
+#! /bin/bash
+
+#Sort folders depending on whether the file contains a Caretta taxa
+#Create one directory for files with caretta and one for files without
+mkdir Caretta NoCaretta
+
+#For loop to cycle through all files 
+for n in *.nex
+do
+        if grep -q "caretta" $n .    #Checks to see if the string caretta is present in the file
+        then
+        cp $n Caretta/  #file is copied to Caretta/ if it has the string "caretta",
+        else
+        cp $n NoCaretta/ #file is copied NoCaretta/ if it does not have has the string "caretta",
+fi
+done
