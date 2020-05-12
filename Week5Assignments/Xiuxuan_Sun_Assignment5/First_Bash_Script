@@ -1,0 +1,42 @@
+#! /bin/bash
+
+# Author: Xiuxuan Sun
+# BIOL 4800 Week 5 Assignments first bash script
+
+# Please go to the alignments folder, and create the .sh file in this folder.
+# Copy all the code into the .sh file, and then it run successfully.
+
+# Assign all the filename in the alignments to variable File_Name 
+File_Name=`ls *.nex`
+for file in $File_Name
+do
+  # pipe the number of species and stored it in the variable ntax_num
+  ntax_num=`grep ntax $file | awk '{print $4}'`
+
+    # test whether the folder with specific number of species exists or not
+    if [ ! -d "/home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num" ]
+    then
+        mkdir /home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num
+    else
+        cp /home/xsun/myBiologyClasses/hw/hw5/alignments/$file /home/xsun/myBiologyClasses/hw/hw5/NumSpecies$ntax_num/$file
+    fi
+done
+
+
+
+For example, here are some sample results, the NumSpecies10 folder display these .nex files which have 10 ntax.
+[xsun@mike1 hw5]$ cd NumSpecies10
+[xsun@mike1 NumSpecies10]$ ls
+my_ENSGALG00000000041.macse_DNA_gb.nex  my_ENSGALG00000004372.macse_DNA_gb.nex  my_ENSGALG00000010315.macse_DNA_gb.nex  my_ENSGALG00000013021.macse_DNA_gb.nex
+my_ENSGALG00000000374.macse_DNA_gb.nex  my_ENSGALG00000004583.macse_DNA_gb.nex  my_ENSGALG00000011184.macse_DNA_gb.nex  my_ENSGALG00000013227.macse_DNA_gb.nex
+my_ENSGALG00000000811.macse_DNA_gb.nex  my_ENSGALG00000004779.macse_DNA_gb.nex  my_ENSGALG00000011192.macse_DNA_gb.nex  my_ENSGALG00000013599.macse_DNA_gb.nex
+my_ENSGALG00000001241.macse_DNA_gb.nex  my_ENSGALG00000004899.macse_DNA_gb.nex  my_ENSGALG00000011649.macse_DNA_gb.nex  my_ENSGALG00000014247.macse_DNA_gb.nex
+my_ENSGALG00000001362.macse_DNA_gb.nex  my_ENSGALG00000005182.macse_DNA_gb.nex  my_ENSGALG00000011887.macse_DNA_gb.nex  my_ENSGALG00000014862.macse_DNA_gb.nex
+my_ENSGALG00000001413.macse_DNA_gb.nex  my_ENSGALG00000006425.macse_DNA_gb.nex  my_ENSGALG00000011965.macse_DNA_gb.nex  my_ENSGALG00000014920.macse_DNA_gb.nex
+my_ENSGALG00000001529.macse_DNA_gb.nex  my_ENSGALG00000006439.macse_DNA_gb.nex  my_ENSGALG00000012011.macse_DNA_gb.nex  my_ENSGALG00000015326.macse_DNA_gb.nex
+my_ENSGALG00000001782.macse_DNA_gb.nex  my_ENSGALG00000006824.macse_DNA_gb.nex  my_ENSGALG00000012013.macse_DNA_gb.nex  my_ENSGALG00000015330.macse_DNA_gb.nex
+my_ENSGALG00000002002.macse_DNA_gb.nex  my_ENSGALG00000006974.macse_DNA_gb.nex  my_ENSGALG00000012196.macse_DNA_gb.nex  my_ENSGALG00000015439.macse_DNA_gb.nex
+my_ENSGALG00000002194.macse_DNA_gb.nex  my_ENSGALG00000008172.macse_DNA_gb.nex  my_ENSGALG00000012233.macse_DNA_gb.nex  my_ENSGALG00000015451.macse_DNA_gb.nex
+my_ENSGALG00000002504.macse_DNA_gb.nex  my_ENSGALG00000008314.macse_DNA_gb.nex  my_ENSGALG00000012312.macse_DNA_gb.nex  my_ENSGALG00000015889.macse_DNA_gb.nex
+my_ENSGALG00000003702.macse_DNA_gb.nex  my_ENSGALG00000009228.macse_DNA_gb.nex  my_ENSGALG00000012543.macse_DNA_gb.nex  my_ENSGALG00000016847.macse_DNA_gb.nex
+my_ENSGALG00000003709.macse_DNA_gb.nex  my_ENSGALG00000010178.macse_DNA_gb.nex  my_ENSGALG00000012724.macse_DNA_gb.nex  my_ENSGALG00000016973.macse_DNA_gb.nex
