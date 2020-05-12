@@ -1,0 +1,8 @@
+#! /bin/bash
+
+mkdir caretta  	  ## make the directory	caretta	for putting desired files
+for file in $(ls *.nex); do    ## create a loop	to enter into each file
+        if grep -o "caretta" $file     	## grep	"caretta" from each file and if	the files contains "caretta" then move it into the directory caretta
+                then mv  $file caretta
+fi	                                                                        ## end the if statement	and close the loop
+done
