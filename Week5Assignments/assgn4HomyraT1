@@ -1,0 +1,39 @@
+#! /bin/bash/
+
+# make new folders
+mkdir 9 10 11 12 13 14 15 16
+
+#sort files in this directory
+
+#grep ntax and find the column no. for the ntax number in those files.
+n= `ls *.nex`
+
+for file in $n
+do
+	Sum=`grep "ntax = " $file | awk '{print $4}'`
+		if [ $Sum -eq 9 ]
+		then
+			mv $file 9/
+		elif [ $Sum -eq 10 ]
+		then
+			mv $file 10/
+		elif [ $Sum -eq 11 ]
+		then
+			mv $file 11/
+		elif [ $Sum -eq 12 ]
+		then
+			mv $file 12/
+		elif [ $Sum -eq 13 ]
+		then
+			mv $file 13/
+		elif [ $Sum -eq 14 ]
+		then
+			mv $file 14/
+		elif [ $Sum -eq 15 ]
+		then
+			mv $file 15/
+		elif [ $Sum -eq 16 ]
+		then
+			mv $file 16/
+		fi
+done

@@ -1,0 +1,18 @@
+#! /bin/bash
+
+#make new folders
+cd alignment
+mkdir caretta/ nonCaretta/
+
+#sort files in this directory
+
+n=`ls *.nex`
+
+for file in $n
+do 
+	if grep -q "caretta" $file
+ 		then mv $file ./caretta
+	else
+		mv $file ./nonCaretta
+	fi
+done
